@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
+import argparse
 import sys
 import re
 import os
 
 from subprocess import Popen, PIPE
-from argparse import ArgumentParser
 
 
 GENERATED_INCLUDE_RE = re.compile(
@@ -13,21 +13,22 @@ GENERATED_INCLUDE_RE = re.compile(
 
 
 def main(argv):
-    argparser = ArgumentParser()
+    argparser = argparse.ArgumentParser()
     argparser.add_argument('--generated-includes-dir', action='append',
                            help='Directory where generated includes are located.')
-    argparser.add_argument('--file', type=open, help='File to check.')
+    argparser.add_argument('--file', type=argparse.FileType(), help='File to check.')
     argparser.add_argument('iwyu_args', nargs='*',
                            help='IWYU arguments, must go after --.')
     args = argparser.parse_args(argv)
 
     with args.file:
-        iwyu = Popen(['include-what-you-use', '-xc'] + args.iwyu_args + ['/dev/stdin'],
-                     stdin=PIPE, stdout=PIPE, stderr=PIPE)
-
-        for line in args.file:
-            match = GENERATED_INCLUDE_RE.match(line)
-            if match:
+        with Popen(['include-what-you-use', '-xc'] + args.iwyu_args + ['/dev/stdin'],
+                   stdin=PIPE, stdout=PIPE, stderr=PIPE) as iwyu:
+            for line in args.file:
+                match = GENERATED_INCLUDE_RE.match(line)
+                if not match:
+                    iwyu.stdin.write(line)
+                    continue
                 for d in args.generated_includes_dir:
                     try:
                         f = open(os.path.join(d, match.group(1)))
@@ -40,10 +41,6 @@ def main(argv):
                             break
                 else:
                     raise IOError('Failed to find {0}'.format(match.group(1)))
-            else:
-                iwyu.stdin.write(line)
-
-    iwyu.stdin.close()
 
     out = iwyu.stdout.read()
     err = iwyu.stderr.read()
