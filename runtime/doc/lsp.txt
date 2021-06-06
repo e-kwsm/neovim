@@ -1963,7 +1963,7 @@ set_lines({lines}, {A}, {B}, {new_lines})           *vim.lsp.util.set_lines()*
                 Return: ~
                     (table) The modified {lines} object
 
-set_loclist({items})                              *vim.lsp.util.set_loclist()*
+set_loclist({items}, {win_id})                    *vim.lsp.util.set_loclist()*
                 Fills current window's location list with given list of items.
                 Can be obtained with e.g. |vim.lsp.util.locations_to_items()|.
 
