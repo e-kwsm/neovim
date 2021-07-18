@@ -73,7 +73,7 @@ jobs:
       - name: Build bundled dependencies
         run: make deps
 
-      # Hint: this is equivalent to the files commmited in: https://github.com/neovim/deps/tree/master/src
+      # Hint: this is equivalent to the files committed in: https://github.com/neovim/deps/tree/master/src
       - name: Clean bundled dependencies à la neovim/deps
         run: |
           rm -rf ./build

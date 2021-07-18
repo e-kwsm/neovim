@@ -6,7 +6,7 @@
 -- https://keplerproject.github.io/coxpcall/
 --
 -- Encapsulates the protected calls with a coroutine based loop, so errors can
--- be dealed without the usual Lua 5.x pcall/xpcall issues with coroutines
+-- be dealt without the usual Lua 5.x pcall/xpcall issues with coroutines
 -- yielding inside the call to pcall or xpcall.
 --
 -- Authors: Roberto Ierusalimschy and Andre Carregal

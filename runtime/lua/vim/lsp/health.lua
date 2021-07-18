@@ -63,7 +63,7 @@ local function check_active_features()
           if client then
             return string.format('%s (id: %d)', client.name, client.id)
           else
-            return string.format('unknow (id: %d)', client_id)
+            return string.format('unknown (id: %d)', client_id)
           end
         end)
         :join(', ')

@@ -1750,7 +1750,7 @@ putglyph 1f3f4,200d,2620,fe0f 2 0,4]])
     state = wantstate(vt, { m = true, e = true, b = true })
     expect('erase 0..25,0..80') -- TODO(dundargoc): strange, this should not be needed according to the original code
 
-    -- ICH move+erase emuation
+    -- ICH move+erase emulation
     reset(state, nil)
     expect('erase 0..25,0..80')
     cursor(0, 0, state)

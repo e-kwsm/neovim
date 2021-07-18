@@ -312,7 +312,7 @@ pub fn build(b: *std.Build) !void {
     const system_install_path = b.option([]const u8, "install-path", "Install path (for packagers)");
     const install_path = system_install_path orelse b.install_path;
     const lib_dir = if (system_install_path) |path| b.fmt("{s}/lib", .{path}) else b.lib_dir;
-    _ = gen_config.addCopyFile(sysconfig_step.getOutputFile(), "auto/config.h"); // run_preprocessor() workaronnd
+    _ = gen_config.addCopyFile(sysconfig_step.getOutputFile(), "auto/config.h"); // run_preprocessor() workaround
 
     _ = gen_config.add("auto/pathdef.h", b.fmt(
         \\char *default_vim_dir = "{s}/share/nvim";

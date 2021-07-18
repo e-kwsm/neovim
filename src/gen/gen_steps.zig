@@ -67,7 +67,7 @@ pub fn nvim_gen_sources(
         gen_step.addFileArg(b.path("src/gen/gen_char_blob.lua"));
         gen_step.addArg("-c");
         _ = gen_header(b, gen_step, "lua/vim_module.generated.h", gen_headers);
-        // NB: vim._init_packages and vim.inspect must be be first and second ones
+        // NB: vim._init_packages and vim.inspect must be first and second ones
         // respectively, otherwise --luamod-dev won't work properly.
         const names = [_][]const u8{
             "_init_packages",
