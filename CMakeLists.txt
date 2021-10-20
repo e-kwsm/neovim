@@ -276,6 +276,7 @@ int main(void)
 }
 " HAVE_BUILTIN_ADD_OVERFLOW)
 
+set(CMAKE_C_STANDARD 99)
 if(MSVC)
   # XXX: /W4 gives too many warnings. #3241
   add_compile_options(/W3)
@@ -283,7 +284,7 @@ if(MSVC)
   add_definitions(-DWIN32)
 else()
   add_compile_options(-Wall -Wextra -pedantic -Wno-unused-parameter
-    -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion
+    -Wstrict-prototypes -Wshadow -Wconversion
     -Wdouble-promotion
     -Wmissing-noreturn
     -Wmissing-format-attribute
