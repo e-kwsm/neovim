@@ -83,13 +83,14 @@ endif()
 
 if(NOT MSVC)
   target_compile_options(main_lib INTERFACE -Wall -Wextra -pedantic -Wno-unused-parameter
-    -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion -Wvla
+    -Wstrict-prototypes -Wshadow -Wconversion -Wvla
     -Wdouble-promotion
     -Wmissing-noreturn
     -Wmissing-format-attribute
     -Wmissing-prototypes
     -Wno-unused-function # because #35129
     -fsigned-char)
+  set_property(TARGET tgt PROPERTY C_STANDARD 99)
 
   # For O_CLOEXEC, O_DIRECTORY, and O_NOFOLLOW flags on older systems
   # (pre POSIX.1-2008: glibc 2.11 and earlier). #4042
