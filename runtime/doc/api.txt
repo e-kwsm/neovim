@@ -1343,7 +1343,15 @@ nvim_open_term({buffer}, {opts})                            *nvim_open_term()*
 
                 Parameters: ~
                     {buffer}  the buffer to use (expected to be empty)
-                    {opts}    Optional parameters. Reserved for future use.
+                    {opts}    Optional parameters.
+                              • on_input: lua callback for input sent, i e
+                                keypresses in terminal mode. Note: keypresses
+                                are sent raw as they would be to the pty
+                                master end. For instance, a carriage return is
+                                sent as a "\r", not as a "\n". |textlock|
+                                applies. It is possible to call
+                                |nvim_chan_send| directly in the callback
+                                however. ["input", term, bufnr, data]
 
                 Return: ~
                     Channel id, or 0 on error
