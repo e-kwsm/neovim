@@ -16,6 +16,7 @@ include(FindPackageHandleStandardArgs)
 include(Deps)
 include(Find)
 include(Util)
+include(Find)
 
 #-------------------------------------------------------------------------------
 # User settings
