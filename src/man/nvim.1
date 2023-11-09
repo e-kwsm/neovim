@@ -324,12 +324,12 @@ Can be used to diagnose slow startup times.
 Dump API metadata serialized to msgpack and exit.
 .It Fl -embed
 Use standard input and standard output as a msgpack-rpc channel.
-:help --embed
+.Ic :help --embed
 .It Fl -headless
 Do not start a UI.
 When supplied with --embed this implies that the embedding application does not intend to (immediately) start a UI.
 Also useful for "scraping" messages in a pipe.
-:help --headless
+.Ic :help --headless
 .It Fl -listen Ar address
 Start RPC server on this pipe or TCP socket.
 .It Fl h , -help
@@ -343,14 +343,14 @@ Print version information and exit.
 The name of sub-directories used within each XDG user directory.
 Defaults to
 .Cm nvim .
-:help $NVIM_APPNAME
+.Ic :help $NVIM_APPNAME
 .It Ev NVIM_LOG_FILE
 Low-level log file, usually found at ~/.local/state/nvim/log.
-:help $NVIM_LOG_FILE
+.Ic :help $NVIM_LOG_FILE
 .It Ev VIM
 Used to locate user files, such as init.vim.
 System-dependent.
-:help $VIM
+.Ic :help $VIM
 .It Ev VIMRUNTIME
 Used to locate runtime files (documentation, syntax highlighting, etc.).
 .It Ev XDG_CONFIG_HOME
@@ -358,7 +358,7 @@ Path to the user-local configuration directory, see
 .Sx FILES .
 Defaults to
 .Pa ~/.config .
-:help xdg
+.Ic :help xdg
 .It Ev XDG_STATE_HOME
 Like
 .Ev XDG_CONFIG_HOME ,
@@ -366,7 +366,7 @@ but used to store data not generally edited by the user,
 namely swap, backup, and ShaDa files.
 Defaults to
 .Pa ~/.local/state .
-:help xdg
+.Ic :help xdg
 .It Ev XDG_DATA_HOME
 Like
 .Ev XDG_CONFIG_HOME ,
@@ -374,7 +374,7 @@ but used to store data not generally edited by the user,
 things like runtime files.
 Defaults to
 .Pa ~/.local/share .
-:help xdg
+.Ic :help xdg
 .It Ev VIMINIT
 Ex commands to be executed at startup.
 .Ic ":help VIMINIT"
@@ -382,7 +382,8 @@ Ex commands to be executed at startup.
 Used to initialize the 'shell' option, which decides the default shell used by
 features like
 .Ic :terminal ,
-.Ic :! , and
+.Ic :! ,
+and
 .Ic system() .
 .El
 .Sh FILES
