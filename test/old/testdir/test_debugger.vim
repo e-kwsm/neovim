@@ -1216,6 +1216,13 @@ func Test_debug_def_function()
       endfor
       echo "done"
     enddef
+
+    def g:FuncWithDict()
+      var d = {
+         a: 1,
+         b: 2,
+         }
+    enddef
   END
   call writefile(file, 'Xtest.vim')
 
@@ -1231,23 +1238,29 @@ func Test_debug_def_function()
   call RunDbgCmd(buf,
                 \ ':debug call FuncWithArgs("asdf", 42, 1, 2, 3)',
                 \ ['cmd: call FuncWithArgs("asdf", 42, 1, 2, 3)'])
-  call RunDbgCmd(buf, 'step', ['line 1:   echo text .. nr'])
+  call RunDbgCmd(buf, 'step', ['line 1: echo text .. nr'])
   call RunDbgCmd(buf, 'echo text', ['asdf'])
   call RunDbgCmd(buf, 'echo nr', ['42'])
   call RunDbgCmd(buf, 'echo items', ['[1, 2, 3]'])
-  call RunDbgCmd(buf, 'step', ['asdf42', 'function FuncWithArgs', 'line 2:   for it in items'])
+  call RunDbgCmd(buf, 'step', ['asdf42', 'function FuncWithArgs', 'line 2: for it in items'])
   call RunDbgCmd(buf, 'echo it', ['1'])
-  call RunDbgCmd(buf, 'step', ['line 3:     echo it'])
-  call RunDbgCmd(buf, 'step', ['1', 'function FuncWithArgs', 'line 4:   endfor'])
-  call RunDbgCmd(buf, 'step', ['line 2:   for it in items'])
+  call RunDbgCmd(buf, 'step', ['line 3: echo it'])
+  call RunDbgCmd(buf, 'step', ['1', 'function FuncWithArgs', 'line 4: endfor'])
+  call RunDbgCmd(buf, 'step', ['line 2: for it in items'])
   call RunDbgCmd(buf, 'echo it', ['2'])
-  call RunDbgCmd(buf, 'step', ['line 3:     echo it'])
-  call RunDbgCmd(buf, 'step', ['2', 'function FuncWithArgs', 'line 4:   endfor'])
-  call RunDbgCmd(buf, 'step', ['line 2:   for it in items'])
+  call RunDbgCmd(buf, 'step', ['line 3: echo it'])
+  call RunDbgCmd(buf, 'step', ['2', 'function FuncWithArgs', 'line 4: endfor'])
+  call RunDbgCmd(buf, 'step', ['line 2: for it in items'])
   call RunDbgCmd(buf, 'echo it', ['3'])
-  call RunDbgCmd(buf, 'step', ['line 3:     echo it'])
-  call RunDbgCmd(buf, 'step', ['3', 'function FuncWithArgs', 'line 4:   endfor'])
-  call RunDbgCmd(buf, 'step', ['line 5:   echo "done"'])
+  call RunDbgCmd(buf, 'step', ['line 3: echo it'])
+  call RunDbgCmd(buf, 'step', ['3', 'function FuncWithArgs', 'line 4: endfor'])
+  call RunDbgCmd(buf, 'step', ['line 5: echo "done"'])
+  call RunDbgCmd(buf, 'cont')
+
+  call RunDbgCmd(buf,
+                \ ':debug call FuncWithDict()',
+                \ ['cmd: call FuncWithDict()'])
+  call RunDbgCmd(buf, 'step', ['line 1: var d = {  a: 1,  b: 2,  }'])
 
   call RunDbgCmd(buf, 'cont')
   call StopVimInTerminal(buf)
