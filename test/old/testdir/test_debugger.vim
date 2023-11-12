@@ -1222,6 +1222,10 @@ func Test_debug_def_function()
          a: 1,
          b: 2,
          }
+         # comment
+         def Inner()
+           eval 1
+         enddef
     enddef
   END
   call writefile(file, 'Xtest.vim')
@@ -1261,6 +1265,7 @@ func Test_debug_def_function()
                 \ ':debug call FuncWithDict()',
                 \ ['cmd: call FuncWithDict()'])
   call RunDbgCmd(buf, 'step', ['line 1: var d = {  a: 1,  b: 2,  }'])
+  call RunDbgCmd(buf, 'step', ['line 6: def Inner()'])
 
   call RunDbgCmd(buf, 'cont')
   call StopVimInTerminal(buf)
