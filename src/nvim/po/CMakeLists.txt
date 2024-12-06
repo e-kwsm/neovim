@@ -38,8 +38,8 @@ if(HAVE_WORKING_LIBINTL AND GETTEXT_FOUND AND XGETTEXT_PRG AND ICONV_PRG)
     tr
     uk
     vi
-    zh_CN.UTF-8
-    zh_TW.UTF-8)
+    zh_CN
+    zh_TW)
 
   set(ENV{OLD_PO_FILE_INPUT} yes)
   set(ENV{OLD_PO_FILE_OUTPUT} yes)
