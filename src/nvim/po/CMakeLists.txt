@@ -34,8 +34,8 @@ if(ENABLE_LANGUAGES)
     tr
     uk
     vi
-    zh_CN.UTF-8
-    zh_TW.UTF-8)
+    zh_CN
+    zh_TW)
 endif()
 
 if(HAVE_WORKING_LIBINTL AND GETTEXT_FOUND AND XGETTEXT_PRG AND ICONV_PRG)
