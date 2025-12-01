@@ -33,7 +33,7 @@ jobs:
         run: |
           OUT_FILE=$(mktemp)
           make lintdocurls 2>&1 | sed -n '/invalid URLs/,/^}/p' > $OUT_FILE
-          if [ -n $OUT_FILE -a -s $OUT_FILE ]; then
+          if [ -n $OUT_FILE ] && [ -s $OUT_FILE ]; then
             # wrap output in a code block
             sed -i -e '1i```' -e '$a```' $OUT_FILE
             echo "Automatically generated on $(date) from $run_url" >> $OUT_FILE
